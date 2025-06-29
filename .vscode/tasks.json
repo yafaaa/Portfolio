@@ -1,0 +1,10 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "makemigrations and migrate for Project skill fields",
+			"command": "python manage.py makemigrations && python manage.py migrate"
+		}
+	]
+}

@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ profile.name }}'s Portfolio</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
 </head>
 <body>
     <header>
         <nav>
-            <a href="#" class="logo">{{ profile.name }}</a>
+            <a href="#" class="logo">Portfolio</a>
             <div class="nav-links">
                 <a href="#about" class="nav-link">About</a>
                 <a href="#experience" class="nav-link">Experience</a>
@@ -21,13 +21,21 @@
     </header>
 
     <section id="about">
-        <h1>{{ profile.name }}</h1>
-        <p>{{ profile.bio }}</p>
+        <h1>About Me</h1>
+        <p>Write something about yourself here.</p>
     </section>
 
     <section id="experience">
         <h2>Experience</h2>
-        <p>I will add a new model to display your work experience here.</p>
+        {% for exp in experiences %}
+            <div class="experience">
+                <h3>{{ exp.position }} at {{ exp.company }}</h3>
+                <p>{{ exp.description }}</p>
+                <p>{{ exp.start_date }}{% if exp.end_date %} - {{ exp.end_date }}{% elif exp.current %} - Present{% endif %}</p>
+            </div>
+        {% empty %}
+            <p>No experience added yet.</p>
+        {% endfor %}
     </section>
 
     <section id="projects">
@@ -44,8 +52,8 @@
                     <li>{{ technology.name }}</li>
                 {% endfor %}
                 </ul>
-                {% if project.live_demo_url %}<a href="{{ project.live_demo_url }}" target="_blank">Live Demo</a>{% endif %}
-                {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank">GitHub</a>{% endif %}
+                {% if project.live_demo_link %}<a href="{{ project.live_demo_link }}" target="_blank">Live Demo</a>{% endif %}
+                {% if project.github_link %}<a href="{{ project.github_link }}" target="_blank">GitHub</a>{% endif %}
             </div>
         {% endfor %}
     </section>
@@ -54,10 +62,10 @@
         <h2>Contact</h2>
         <form method="post" id="contact-form" novalidate>
             {% csrf_token %}
-            {% if contact_form.errors %}
+            {% if form.errors %}
                 <div class="form-errors">
                     <ul>
-                        {% for field, errors in contact_form.errors.items %}
+                        {% for field, errors in form.errors.items %}
                             {% for error in errors %}
                                 <li>{{ error }}</li>
                             {% endfor %}
@@ -65,7 +73,7 @@
                     </ul>
                 </div>
             {% endif %}
-            {{ contact_form.as_p }}
+            {{ form.as_p }}
             <button type="submit">Send Message</button>
         </form>
     </section>

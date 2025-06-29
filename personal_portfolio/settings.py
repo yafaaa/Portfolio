@@ -99,6 +99,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'auth.User'
+
+# Restrict user registration and login to only the admin
+LOGIN_URL = '/admin/login/'
+
+# Optionally, you can add a middleware or override the User model to prevent creation of new users via the admin or programmatically.
+# For now, this will ensure only the admin can log in and no registration is possible via the site.
+# If you want to enforce this further, you can remove the 'Add user' permission from the admin for all users except the superuser.
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

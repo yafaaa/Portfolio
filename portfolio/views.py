@@ -1,23 +1,24 @@
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail
 from django.contrib import messages
-from .models import Profile, Skill, Project, Experience, Education
-from .forms import ContactForm  # We'll create this form
-from django.db.models import Count
+from .models import Project, Experience, Overview  # Removed Skill import
+from .forms import ContactForm
+
 
 def home(request):
-    profile = Profile.objects.first()
-    skills = Skill.objects.all()
-    projects = Project.objects.all().order_by('-date_created')
+    overview = Overview.objects.first()
+    # Removed skills = Skill.objects.all()
+    projects = Project.objects.all().order_by('title')  # No date_created, order by title
+    experiences = Experience.objects.all().order_by('order', '-start_date')
     context = {
-        'profile': profile,
-        'skills': skills,
+        'overview': overview,
+        # 'skills': skills,  # Removed
         'projects': projects,
+        'experiences': experiences,
     }
     return render(request, 'portfolio/home.html', context)
 
+
 def contact_view(request):
-    profile = Profile.objects.first()
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -27,7 +28,6 @@ def contact_view(request):
     else:
         form = ContactForm()
     context = {
-        'profile': profile,
         'form': form,
     }
     return render(request, "portfolio/contact.html", context)
