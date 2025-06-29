@@ -1,0 +1,32 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ profile.name }}</h1>
+    <p>{{ profile.profession }}</p>
+    <p>{{ profile.bio }}</p>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <ul>
+            {% for skill in skills %}
+                <li>{{ skill.name }} - {{ skill.get_proficiency_display }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Projects</h2>
+        <ul>
+            {% for project in projects %}
+                <li>
+                    <strong>{{ project.title }}</strong>: {{ project.description }}
+                    {% if project.live_demo_link %}
+                        (<a href="{{ project.live_demo_link }}">View</a>)
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
