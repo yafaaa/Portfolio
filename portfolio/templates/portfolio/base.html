@@ -8,17 +8,12 @@
     <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="{% url 'home' %}" class="nav-link{% if request.path == '/' %} active{% endif %}">Home</a>
-            <a href="{% url 'contact' %}" class="nav-link{% if request.path == '/contact/' %} active{% endif %}">Contact</a>
-        </nav>
-    </header>
+{% comment %} Removed default header navigation {% endcomment %}
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+<main>
+    {% block content %}{% endblock %}
+</main>
 
-    <script src="{% static 'portfolio/js/main.js' %}"></script>
+<script src="{% static 'portfolio/js/main.js' %}"></script>
 </body>
 </html>

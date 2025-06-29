@@ -10,10 +10,13 @@
 <body>
     <header>
         <nav>
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#" class="logo">{{ profile.name }}</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
         </nav>
     </header>
 
@@ -22,16 +25,9 @@
         <p>{{ profile.bio }}</p>
     </section>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        {% for category in skill_categories %}
-            <h3>{{ category.name }}</h3>
-            <ul>
-            {% for skill in category.skills.all %}
-                <li>{{ skill.name }} - {{ skill.proficiency }}</li>
-            {% endfor %}
-            </ul>
-        {% endfor %}
+    <section id="experience">
+        <h2>Experience</h2>
+        <p>I will add a new model to display your work experience here.</p>
     </section>
 
     <section id="projects">

@@ -9,11 +9,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Highlight active navigation link on scroll
+// Handle header scroll effect and active navigation link
+const header = document.querySelector('header');
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-link');
 
 window.addEventListener('scroll', () => {
+    // Add/remove scrolled class to header
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+
+    // Highlight active navigation link
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
