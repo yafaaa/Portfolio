@@ -7,7 +7,7 @@ from .forms import ContactForm
 def home(request):
     overview = Overview.objects.first()
     # Removed skills = Skill.objects.all()
-    projects = Project.objects.all().order_by('title')  # No date_created, order by title
+    projects = Project.objects.all()  # Use default Meta ordering (order, title)
     experiences = Experience.objects.all().order_by('order', '-start_date')
     context = {
         'overview': overview,

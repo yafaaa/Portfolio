@@ -20,14 +20,6 @@
         {% endfor %}
     </div>
     <div class="section">
-        <h2>Skills</h2>
-        <ul>
-            {% for skill in skills %}
-                <li>{{ skill.name }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="section">
         <h2>Projects</h2>
         <ul>
             {% for project in projects %}
@@ -39,6 +31,15 @@
                 </li>
             {% endfor %}
         </ul>
+    </div>
+    <div class="section contact-section">
+        <h2>Contact Me</h2>
+        <div class="contact-content">
+            <h3>What's next?</h3>
+            <h4>Get in touch</h4>
+            <p>I’m looking for great new opportunities so my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!</p>
+            <a href="mailto:yafetmichael36@gmail.com" class="btn">Say Hello</a>
+        </div>
     </div>
 </div>
 {% endblock %}
