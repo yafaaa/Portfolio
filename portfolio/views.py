@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Project, Experience, Overview  # Removed Skill import
+from .models import Project, Experience, Overview, AboutMe  # Added AboutMe import
 from .forms import ContactForm
 
 
 def home(request):
     overview = Overview.objects.first()
+    aboutme = AboutMe.objects.first()
     # Removed skills = Skill.objects.all()
     projects = Project.objects.all()  # Use default Meta ordering (order, title)
     experiences = Experience.objects.all().order_by('order', '-start_date')
     context = {
         'overview': overview,
+        'aboutme': aboutme,
         # 'skills': skills,  # Removed
         'projects': projects,
         'experiences': experiences,

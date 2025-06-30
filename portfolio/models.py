@@ -90,3 +90,13 @@ class Overview(models.Model):
     
     def __str__(self):
         return self.name
+
+class AboutMe(models.Model):
+    content = models.TextField(help_text="Enter the About Me text.")
+
+    def __str__(self):
+        return "About Me"
+
+    class Meta:
+        verbose_name = "About Me"
+        verbose_name_plural = "About Me"

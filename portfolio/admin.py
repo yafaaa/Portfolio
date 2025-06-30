@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Experience, ContactMessage, Overview, Skill
+from .models import Project, Experience, ContactMessage, Overview, Skill, AboutMe
 from .forms import ProjectAdminForm
 
 @admin.register(Skill)
@@ -30,3 +30,8 @@ class ContactMessageAdmin(admin.ModelAdmin):
 class OverviewAdmin(admin.ModelAdmin):
     list_display = ('name', 'technical_expertise')
     search_fields = ('name', 'technical_expertise', 'bio')
+
+@admin.register(AboutMe)
+class AboutMeAdmin(admin.ModelAdmin):
+    list_display = ('content',)
+    search_fields = ('content',)

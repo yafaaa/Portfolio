@@ -31,13 +31,24 @@
                 </div>
                 <div class="project-content-col">
                     <h3 class="project-title">{{ project.title }}</h3>
+                    {% if project.skills.all %}
+                    <div class="tech-stack">
+                        {% for skill in project.skills.all %}
+                            <span class="tech-badge">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <p class="project-description">{{ project.description }}</p>
                     <div class="project-actions">
                         {% if project.live_demo_link %}
-                        <a href="{{ project.live_demo_link }}" class="btn live-demo">Live Demo</a>
+                        <a href="{{ project.live_demo_link }}" class="btn live-demo" aria-label="Live Demo">
+                            <i class="fa-solid fa-external-link-alt"></i>
+                        </a>
                         {% endif %}
                         {% if project.github_link %}
-                        <a href="{{ project.github_link }}" class="btn github">GitHub</a>
+                        <a href="{{ project.github_link }}" class="btn github" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
                         {% endif %}
                     </div>
                 </div>
