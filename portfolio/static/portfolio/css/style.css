@@ -4,6 +4,8 @@ body {
     line-height: 1.6;
     margin: 0;
     background-color: #f4f4f4;
+    padding-right: 80px;
+    padding-bottom: 200px; /* Increased bottom padding for more space at end of page */
 }
 
 h1, h2, h3 {
@@ -100,6 +102,69 @@ section {
     border-radius: 5px;
 }
 
+/* Project cards vertical layout */
+.project-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 auto 20px;
+    max-width: 800px; /* limit overall container width */
+    align-items: center;
+}
+
+.project-card {
+    background-color: #1e2733;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 700px; /* limit individual card width */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.project-image img {
+    width: 100%;
+    object-fit: cover;
+    height: 250px;
+}
+
+.project-info {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.project-info h3 {
+    margin: 0 0 10px;
+    color: #e0e7ff;
+}
+.project-info p {
+    flex: 1;
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.project-links {
+    display: flex;
+    gap: 10px;
+}
+.project-links .btn {
+    background-color: #1E1C1C;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+.project-links .btn:hover {
+    background-color: #977F77;
+}
+
 /* Form styles */
 form {
     margin-top: 20px;
@@ -112,6 +177,129 @@ form {
     margin-bottom: 15px;
     border: 1px solid #f5c6cb;
     border-radius: 5px;
+}
+
+/* Section indicator styles */
+#section-indicator-container {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    z-index: 1000;
+}
+
+#section-indicator {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.indicator-item {
+    position: relative;
+    z-index: 1;
+    display: block;
+    padding: 10px 16px;
+    margin: 8px 0;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.indicator-item.active {
+    color: #977F77;
+    transform: scale(1.1);
+}
+
+/* Sidebar indicator overrides */
+#section-indicator .indicator-item.active {
+    background-color: transparent !important;
+    color: #977F77; /* maintain custom active text color */
+}
+
+#moving-bar {
+    position: absolute;
+    left: 0;
+    width: 4px;
+    background-color: #1E1C1C; /* updated bar color */
+    transition: top 0.3s ease-out, height 0.3s ease-out;
+    top: 0;
+    height: 0;
+    z-index: 0;
+}
+
+/* Override global nav a styles for sidebar indicator */
+#section-indicator a.indicator-item {
+    background-color: transparent !important;
+    margin: 4px 0 !important;
+    padding: 8px 16px !important;
+    border-radius: 0 !important;
+}
+
+#section-indicator a.indicator-item.active {
+    background-color: transparent !important;
+    color: #977F77 !important;
+}
+
+/* Extra space after contact section */
+section#contact {
+    padding-bottom: 200px;
+}
+
+/* Footer styles */
+/* Footer adjustments for minimal style */
+#site-footer {
+    background-color: transparent !important;
+    text-align: center;
+    margin-top: 100px; /* push text lower */
+    padding: 0;
+    color: #555;
+}
+
+#site-footer .footer-content p {
+    margin: 4px 0;
+}
+
+/* Side-by-Side Project Layout */
+.project-container-flex {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0 auto 40px;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.project-image-col {
+    flex: 1;
+    width: 40%;
+}
+.project-image-col img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px; /* more rounded corners */
+}
+
+.project-content-col {
+    flex: 1;
+    width: 60%;
+    padding-right: 20px;
+}
+.project-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.project-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+.project-actions .btn {
+    margin-right: 10px;
 }
 
 /* Responsive design */

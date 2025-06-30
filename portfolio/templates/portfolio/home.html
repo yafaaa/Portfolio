@@ -2,12 +2,14 @@
 
 {% block content %}
 <div class="container">
+    <section id="about-me" class="section about-me-section">
     {% if overview %}
         <h1>{{ overview.name }}</h1>
         <h2>{{ overview.technical_expertise }}</h2>
         <p>{{ overview.bio }}</p>
     {% endif %}
-    <div class="section">
+    </section>
+    <section id="experience" class="section">
         <h2>Experience</h2>
         {% for exp in experiences %}
             <div class="experience">
@@ -18,21 +20,32 @@
         {% empty %}
             <p>No experience added yet.</p>
         {% endfor %}
-    </div>
-    <div class="section">
+    </section>
+    <section id="projects" class="section">
         <h2>Projects</h2>
-        <ul>
+        <div class="project-cards">
             {% for project in projects %}
-                <li>
-                    <strong>{{ project.title }}</strong>: {{ project.description }}
-                    {% if project.live_demo_link %}
-                        (<a href="{{ project.live_demo_link }}">View</a>)
-                    {% endif %}
-                </li>
+            <div class="project-container-flex">
+                <div class="project-image-col">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                </div>
+                <div class="project-content-col">
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-description">{{ project.description }}</p>
+                    <div class="project-actions">
+                        {% if project.live_demo_link %}
+                        <a href="{{ project.live_demo_link }}" class="btn live-demo">Live Demo</a>
+                        {% endif %}
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" class="btn github">GitHub</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
             {% endfor %}
-        </ul>
-    </div>
-    <div class="section contact-section">
+        </div>
+    </section>
+    <section id="contact" class="section contact-section">
         <h2>Contact Me</h2>
         <div class="contact-content">
             <h3>What's next?</h3>
@@ -40,6 +53,6 @@
             <p>I’m looking for great new opportunities so my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!</p>
             <a href="mailto:yafetmichael36@gmail.com" class="btn">Say Hello</a>
         </div>
-    </div>
+    </section>
 </div>
 {% endblock %}

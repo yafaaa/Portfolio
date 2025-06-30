@@ -13,13 +13,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const header = document.querySelector('header');
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-link');
+// Section indicator elements
+const indicatorItems = document.querySelectorAll('.indicator-item');
+const movingBar = document.getElementById('moving-bar');
+
+// Update indicator for given section ID
+function updateIndicator(current) {
+    const activeItem = document.querySelector(`.indicator-item[data-target="${current}"]`);
+    indicatorItems.forEach(item => item.classList.remove('active'));
+    if (activeItem) {
+        activeItem.classList.add('active');
+        const itemTop = activeItem.offsetTop;
+        const itemHeight = activeItem.offsetHeight;
+        movingBar.style.top = `${itemTop}px`;
+        movingBar.style.height = `${itemHeight}px`;
+    }
+}
+
+// Observe sections entering view
+const observerOptions = { root: null, rootMargin: '0px', threshold: 0.5 };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            updateIndicator(entry.target.id);
+        }
+    });
+}, observerOptions);
+sections.forEach(section => observer.observe(section));
 
 window.addEventListener('scroll', () => {
-    // Add/remove scrolled class to header
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
+    if (header) {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     }
 
     // Highlight active navigation link
@@ -37,6 +65,9 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
+
+    // Update indicator via scroll fallback
+    updateIndicator(current);
 });
 
 // Client-side form validation
@@ -81,5 +112,14 @@ contactForm.addEventListener('submit', function(e) {
             errorContainer.appendChild(ul);
             contactForm.prepend(errorContainer);
         }
+    }
+});
+
+// Set dynamic build date in footer
+window.addEventListener('DOMContentLoaded', () => {
+    const dateEl = document.getElementById('build-date');
+    if (dateEl) {
+        const now = new Date();
+        dateEl.textContent = now.toDateString();
     }
 });

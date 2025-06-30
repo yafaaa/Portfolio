@@ -11,6 +11,20 @@
 <main>
     {% block content %}{% endblock %}
 </main>
+<div id="section-indicator-container">
+    <nav id="section-indicator">
+        <a href="#about-me" class="indicator-item" data-target="about-me">About</a>
+        <a href="#experience" class="indicator-item" data-target="experience">Experience</a>
+        <a href="#projects" class="indicator-item" data-target="projects">Projects</a>
+        <a href="#contact" class="indicator-item" data-target="contact">Contact</a>
+        <div id="moving-bar"></div>
+    </nav>
+</div>
 <script src="{% static 'portfolio/js/main.js' %}"></script>
+<footer id="site-footer">
+    <div class="footer-content">
+        <p>Built by Yafet Michael</p>
+    </div>
+</footer>
 </body>
 </html>
