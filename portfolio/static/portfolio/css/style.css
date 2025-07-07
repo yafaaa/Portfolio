@@ -131,6 +131,21 @@ section {
     height: 250px;
 }
 
+/* Project image hover: animate with a glassy box effect (like project title) */
+.project-image-col img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px; /* more rounded corners */
+    transition: box-shadow 0.3s, background 0.3s, transform 0.3s cubic-bezier(.4,2,.6,1);
+}
+
+.project-image-col img:hover {
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 4px 16px rgba(31,38,135,0.10);
+    transform: translateY(-4px) scale(1.08);
+}
+
 .project-info {
     padding: 15px;
     flex: 1;
@@ -163,6 +178,27 @@ section {
 }
 .project-links .btn:hover {
     background-color: #977F77;
+}
+
+/* Make all icons in project-actions match the text color by default */
+.project-actions .btn i {
+    color: #333; /* Default text color, adjust as needed */
+    font-size: 1.5em;
+    vertical-align: middle;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.project-actions .btn:hover i {
+    transform: scale(1.25);
+    color: #007BFF;
+}
+
+.project-actions .btn.github i {
+    color: #333;
+}
+
+.project-actions .btn.live-demo i {
+    color: #333;
 }
 
 /* Form styles */
@@ -282,6 +318,13 @@ section#contact {
     height: auto;
     display: block;
     border-radius: 12px; /* more rounded corners */
+    transition: box-shadow 0.3s, background 0.3s, transform 0.3s cubic-bezier(.4,2,.6,1);
+}
+
+.project-image-col img:hover {
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 4px 16px rgba(31,38,135,0.10);
+    transform: translateY(-4px) scale(1.08);
 }
 
 .project-content-col {
@@ -293,6 +336,17 @@ section#contact {
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 15px;
+    display: inline-block;
+    padding: 0 8px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(.4,2,.6,1);
+    cursor: pointer;
+}
+.project-title:hover {
+    background: rgba(255,255,255,0.7);
+    color: #1e2733;
+    box-shadow: 0 4px 16px rgba(31,38,135,0.10);
+    transform: translateY(-4px) scale(1.08);
 }
 .project-description {
     margin-bottom: 20px;
@@ -300,6 +354,59 @@ section#contact {
 }
 .project-actions .btn {
     margin-right: 10px;
+}
+
+/* Glassy hover effect for project and experience sections */
+.project-container-flex:hover, .experience:hover {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: background 0.3s, box-shadow 0.3s, border 0.3s;
+}
+
+.experience {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: background 0.3s, box-shadow 0.3s, border 0.3s;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .experience {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Tech badge (skill box) styles */
+.tech-badge {
+    display: inline-block;
+    background: #f4f4f4;
+    color: #333;
+    border-radius: 6px;
+    padding: 6px 14px;
+    margin: 0 12px 12px 0;
+    font-size: 0.92em;
+    font-weight: 500;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    border: 1px solid #e0e0e0;
+    transition: background 0.2s, color 0.2s, transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.tech-badge:hover {
+    background: #e0e7ff;
+    color: #1e2733;
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 4px 16px rgba(31,38,135,0.10);
 }
 
 /* Responsive design */
